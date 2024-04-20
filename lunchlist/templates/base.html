@@ -5,15 +5,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        @font-face {
+            font-family: 'font1';
+            src: url("{% static 'fonts/Vazir-Light.woff2' %} ") format('woff2'),
+            url("{% static 'fonts/Vazir-Light.woff' %}") format('woff'),
+            url("{% static 'fonts/Vazir-Light.ttf' %}") format('truetype'),
+            url("{% static 'fonts/Vazir-Light.eot' %}");
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+
+
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
 
-    <h1>base</h1>
 
     {% block content %}
 
     {% endblock %}
 
+
+
+    <link rel="stylesheet" href="{% static 'js/bootstrap.bundle.min.js' %}">
 </body>
 </html>

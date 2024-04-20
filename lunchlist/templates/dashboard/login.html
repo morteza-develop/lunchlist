@@ -7,5 +7,47 @@
 {% endblock %}
 
 {% block content %}
-login
+
+<div class="vh-100 d-flex justify-content-center align-items-center bg-gradient">
+    <div class="container">
+
+        <div class="row d-flex justify-content-center ">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card bg-light shadow rounded">
+                    <div class="card-body p-5">
+                        <div>
+
+                            <!-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div> -->
+
+                        </div>
+                        <form action="" method="POST" class="mb-3 mt-md-4">
+
+                            <div class="my-4">
+                                <label for="username" class="form-label ">نام کاربری : </label>
+                                <input type="text" class="form-control shadow-sm rounded" id="username" name="username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label ">رمز عبور : </label>
+                                <input type="password" class="form-control shadow-sm rounded" id="password"
+                                    name="password">
+                            </div>
+                            <p class="small"><a class="text-primary" href="">مرا به خاطر سپار</a></p>
+                            <div class="d-grid">
+                                <button class="btn btn-outline-primary shadow rounded" type="submit">ورود</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
