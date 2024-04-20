@@ -10,34 +10,73 @@ dasf
 
 {% block content %}
 
-    <div class="container-fluid ">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <i class='bx bxs-send bx-tada'></i>
+            <div class="logo-name"><span>AFE</span>Lunch</div>
+        </a>
+        <ul class="side-menu">
+            {% comment %} <!-- <li class='{% if request.resolver_match.url_name == "panel" %}active{% endif %}'><a href="{% url 'panel' %}"><i class='bx bxs-dashboard'></i>داشبورد</a></li>
+            <li class='{% if request.resolver_match.url_name == "messages" %}active{% endif %}'><a href="{% url 'messages' %}"><i class='bx bx-message-dots'></i>پیامها</a></li>
+            <li class='{% if request.resolver_match.url_name == "msgTemplate" %}active{% endif %}'><a href="{% url 'msgTemplate' %}"><i class='bx bx-shape-square'></i>قالبها</a></li>
+            <li class='{% if request.resolver_match.url_name == "document" %}active{% endif %}'><a href="{% url 'document' %}"><i class='bx bx-book-content'></i>مستندات</a></li>
+            <li class='{% if request.resolver_match.url_name == "order" %}active{% endif %}'><a href="{% url 'order' %}"><i class='bx bx-receipt'></i>سفارشات</a></li>
+            <li class=""><a href="#"><i class='bx bx-support'></i>پشتیبانی</a></li>
+            <li class=""><a href="#"><i class='bx bx-user-circle'></i>پروفایل</a></li> --> {% endcomment %}
+            <li class=''><a href=""><i class='bx bxs-dashboard'></i>داشبورد</a></li>
+            <li class=''><a href=""><i class='bx bx-message-dots'></i>پیامها</a></li>
+            <li class=''><a href=""><i class='bx bx-shape-square'></i>قالبها</a></li>
+            <li class=''><a href=""><i class='bx bx-book-content'></i>مستندات</a></li>
+            <li class=''><a href=""><i class='bx bx-receipt'></i>سفارشات</a></li>
+            <li class=""><a href="#"><i class='bx bx-support'></i>پشتیبانی</a></li>
+            <li class=""><a href="#"><i class='bx bx-user-circle'></i>پروفایل</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="" class="logout">
+                    <i class='bx bx-log-out-circle'></i>
+                    خروج
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End of Sidebar -->
+    
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Navbar -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <input type="checkbox" id="theme-toggle" hidden>
+            <label for="theme-toggle" class="theme-toggle"></label>
+            <form action="#" style="display: none;">
+                <div class="form-input">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            
+        </nav>
 
-
-        <div class="row">
-            <div class="col-md-3 col-sm-4">
-
+        <main>
+            <div class="header">
+                <div class="left">
+                    <h1>
+                        {% block pageheader%}
+                        {% endblock%}
+                    </h1>
+                </div>
             </div>
-            <div class="col-md-9 col-sm-8 ">
-                لورم ایپسم یک متن تست
-            </div>
-        </div>
 
-        <!-- <div class="row">
-            <div class="col-md-3 col-sm-4">
+        {% block pagecontent %}
+                        
+        {% endblock %} 
 
-            </div>
-            <div class="col-md-9 col-sm-8 ">
-                لورم ایپسم یک متن تست
-            </div>
-        </div> -->
+        </main>
 
     </div>
 
-<!-- <div>
-    {% block pagecontent %}
-        
-    {% endblock %}
-</div> -->
+
 
 
 
