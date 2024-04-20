@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    # path('', view='' , name='')
+    path('', views.dashboard_index , name='index')
 ]
