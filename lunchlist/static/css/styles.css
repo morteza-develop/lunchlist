@@ -16,4 +16,21 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'font1';
+    font-size: 0.5rem;
+  }
+
+  input{
+    font-size: 0.8rem;
+    height: 5px;
+  }
+
+  
+
+  .login-from{
+    font-size: 0.8rem;
+  }
+
+  .login-from button{
+    font-size: 0.8rem;
+    height: 5px;
   }

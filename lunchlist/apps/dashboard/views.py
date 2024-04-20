@@ -7,8 +7,28 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-def dashboard_index(request):
-    return render(request, "home.html")
+
 
 def login_view(request):
-    return render(request, 'dashboard/login.html')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.success(
+                request, ('خطای ورود ...! نام کاربری یا رمز عبور صحیح نیست !!!'))
+            return redirect("login")
+    else:
+        return render(request, "dashboard/login.html", {})
+    
+
+def logoutView(request):
+    logout(request)
+    return redirect("login")
+
+def dashboard_index(request):
+    return render(request, "home.html")

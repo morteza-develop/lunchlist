@@ -12,20 +12,22 @@
     <div class="container">
 
         <div class="row d-flex justify-content-center ">
-            <div class="col-12 col-md-8 col-lg-6">
+            <div class="col-10 col-md-6 col-lg-4">
                 <div class="card bg-light shadow rounded">
                     <div class="card-body p-5">
                         <div>
-
-                            <!-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ message }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
-                            </div> -->
-
+                            </div>
+                            {% endfor%}
+                            {% endif %}
                         </div>
-                        <form action="" method="POST" class="mb-3 mt-md-4">
-
+                        <form action="" method="POST" class="mb-3 mt-md-4 login-from">
+                            {% csrf_token %}
                             <div class="my-4">
                                 <label for="username" class="form-label ">نام کاربری : </label>
                                 <input type="text" class="form-control shadow-sm rounded" id="username" name="username">
@@ -37,7 +39,7 @@
                             </div>
                             <p class="small"><a class="text-primary" href="">مرا به خاطر سپار</a></p>
                             <div class="d-grid">
-                                <button class="btn btn-outline-primary shadow rounded" type="submit">ورود</button>
+                                <button class="btn btn-outline-primary shadow rounded d-flex justify-content-center align-items-center" type="submit">ورود</button>
                             </div>
                         </form>
 
@@ -48,6 +50,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}
