@@ -31,4 +31,4 @@ def logoutView(request):
     return redirect("login")
 
 def dashboard_index(request):
-    return render(request, "home.html")
+    return render(request, "dashboard/lunchlist.html")
