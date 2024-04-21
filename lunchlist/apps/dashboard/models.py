@@ -57,3 +57,4 @@ class Menu(models.Model):
     class Meta:
         verbose_name = _("منو")
         verbose_name_plural = _("منو ها")
+
