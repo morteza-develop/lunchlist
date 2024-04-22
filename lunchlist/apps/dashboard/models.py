@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 
 
+
 class UserInfo(models.Model):
     # user = models.m
     profileimage = models.ImageField(verbose_name= _('تصویر'))
