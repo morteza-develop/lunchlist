@@ -34,3 +34,8 @@ def logout_view(request):
 @login_required(login_url="login")
 def dashboard_index(request):
     return render(request, "dashboard/lunchlist.html")
+
+
+@login_required(login_url="login")
+def menulist_view(request):
+    return render(request, "dashboard/menulist.html")

@@ -24,13 +24,10 @@ dasf
             <li class='{% if request.resolver_match.url_name == "order" %}active{% endif %}'><a href="{% url 'order' %}"><i class='bx bx-receipt'></i>سفارشات</a></li>
             <li class=""><a href="#"><i class='bx bx-support'></i>پشتیبانی</a></li>
             <li class=""><a href="#"><i class='bx bx-user-circle'></i>پروفایل</a></li> --> {% endcomment %}
-            <li class=''><a href=""><i class='bx bxs-dashboard'></i>داشبورد</a></li>
-            <li class=''><a href=""><i class='bx bx-message-dots'></i>پیامها</a></li>
-            <li class=''><a href=""><i class='bx bx-shape-square'></i>قالبها</a></li>
-            <li class=''><a href=""><i class='bx bx-book-content'></i>مستندات</a></li>
-            <li class=''><a href=""><i class='bx bx-receipt'></i>سفارشات</a></li>
-            <li class=""><a href="#"><i class='bx bx-support'></i>پشتیبانی</a></li>
-            <li class=""><a href="#"><i class='bx bx-user-circle'></i>پروفایل</a></li>
+            <li class=''><a href="{% url 'dashboard' %}"><i class='bx bxs-dashboard'></i>داشبورد</a></li>
+            <li class=''><a href="{% url 'menulist' %}"><i class='bx bx-message-dots'></i>لیست منوها</a></li>
+            <li class=''><a href=""><i class='bx bx-shape-square'></i>لیست غذا ها</a></li>
+            <li class=''><a href=""><i class='bx bx-book-content'></i>هزینه ها</a></li>
         </ul>
         <ul class="side-menu">
             <li>
