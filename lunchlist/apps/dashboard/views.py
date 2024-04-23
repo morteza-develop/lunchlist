@@ -26,9 +26,11 @@ def login_view(request):
         return render(request, "dashboard/login.html", {})
     
 
-def logoutView(request):
+def logout_view(request):
     logout(request)
     return redirect("login")
 
+
+@login_required(login_url="login")
 def dashboard_index(request):
     return render(request, "dashboard/lunchlist.html")

@@ -8,7 +8,7 @@ class UserInfo(models.Model):
     # user = models.m
     profileimage = models.ImageField(verbose_name= _('تصویر'))
 
-
+# FOOD Model \\\\\\\\\\\\\\\\\\\\\
 class Food(models.Model):
     foodName = models.CharField(
         max_length=100,
@@ -41,7 +41,7 @@ class Food(models.Model):
         verbose_name = _("غذا")
         verbose_name_plural = _("غذاها")
     
-    
+# MENU Model \\\\\\\\\\\\\\\\\\\\\\\
 class Menu(models.Model):
     name = models.CharField(
         verbose_name=_("نام منو"),
