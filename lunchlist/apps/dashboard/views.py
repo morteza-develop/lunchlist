@@ -33,7 +33,7 @@ def logout_view(request):
 
 @login_required(login_url="login")
 def dashboard_index(request):
-    return render(request, "dashboard/lunchlist.html")
+    return render(request, "dashboard/dashboard.html")
 
 
 @login_required(login_url="login")
