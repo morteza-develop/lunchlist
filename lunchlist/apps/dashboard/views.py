@@ -39,3 +39,8 @@ def dashboard_index(request):
 @login_required(login_url="login")
 def menulist_view(request):
     return render(request, "dashboard/menulist.html")
+
+
+@login_required(login_url="login")
+def foodlist_view(request):
+    return render(request, "dashboard/foodlist.html")

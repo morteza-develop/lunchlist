@@ -17,16 +17,9 @@ dasf
             <div class="logo-name"><span>AFE</span>Lunch</div>
         </a>
         <ul class="side-menu">
-            {% comment %} <!-- <li class='{% if request.resolver_match.url_name == "panel" %}active{% endif %}'><a href="{% url 'panel' %}"><i class='bx bxs-dashboard'></i>داشبورد</a></li>
-            <li class='{% if request.resolver_match.url_name == "messages" %}active{% endif %}'><a href="{% url 'messages' %}"><i class='bx bx-message-dots'></i>پیامها</a></li>
-            <li class='{% if request.resolver_match.url_name == "msgTemplate" %}active{% endif %}'><a href="{% url 'msgTemplate' %}"><i class='bx bx-shape-square'></i>قالبها</a></li>
-            <li class='{% if request.resolver_match.url_name == "document" %}active{% endif %}'><a href="{% url 'document' %}"><i class='bx bx-book-content'></i>مستندات</a></li>
-            <li class='{% if request.resolver_match.url_name == "order" %}active{% endif %}'><a href="{% url 'order' %}"><i class='bx bx-receipt'></i>سفارشات</a></li>
-            <li class=""><a href="#"><i class='bx bx-support'></i>پشتیبانی</a></li>
-            <li class=""><a href="#"><i class='bx bx-user-circle'></i>پروفایل</a></li> --> {% endcomment %}
             <li class='{% if request.resolver_match.url_name == "dashboard" %}active{% endif %}'><a href="{% url 'dashboard' %}"><i class='bx bxs-dashboard'></i>داشبورد</a></li>
             <li class='{% if request.resolver_match.url_name == "menulist" %}active{% endif %}'><a href="{% url 'menulist' %}"><i class='bx bx-message-dots'></i>لیست منوها</a></li>
-            <li class=''><a href=""><i class='bx bx-shape-square'></i>لیست غذا ها</a></li>
+            <li class='{% if request.resolver_match.url_name == "foodlist" %}active{% endif %}'><a href="{% url 'foodlist' %}"><i class='bx bx-shape-square'></i>لیست غذا ها</a></li>
             <li class=''><a href=""><i class='bx bx-book-content'></i>هزینه ها</a></li>
         </ul>
         <ul class="side-menu">
