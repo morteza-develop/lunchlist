@@ -437,7 +437,7 @@ body{
 
 .content main .bottom-data .maincard{
   width: 100%;
-  height: 86vh;
+  /* height: 86vh; */
 }
 
 .content main .bottom-data .header{
