@@ -55,7 +55,35 @@ class Menu(models.Model):
         verbose_name=_("زمان انقضاء"),
     )
 
+    MENU_STATUS  = (
+        ("0", "بسته"),
+        ("1", "باز"),
+    )
+
+    status = models.IntegerField(
+        verbose_name=_("وضعیت منو"),        
+        choices=MENU_STATUS, 
+        default=0
+    )
+
     class Meta:
         verbose_name = _("منو")
         verbose_name_plural = _("منو ها")
 
+# RESERVE Model \\\\\\\\\\\\\\\\\\\\\\\
+class Reservation(models.Model):
+    userName = models.ForeignKey(
+        'auth.User', 
+        on_delete=models.CASCADE,
+        verbose_name=_("کاربر")
+        )
+    menu = models.ForeignKey(
+        Menu, 
+        on_delete=models.CASCADE,
+        verbose_name="منو",
+        )
+    food = models.ForeignKey(
+        Food,
+        on_delete=models.CASCADE,
+        verbose_name=_("")
+    )
