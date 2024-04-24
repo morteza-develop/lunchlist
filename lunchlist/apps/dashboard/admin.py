@@ -8,5 +8,10 @@ class FoodAdmin(admin.ModelAdmin):
 class MenuAdmin(admin.ModelAdmin):
     list_display = ("name","createDate","expire")
 
+class ReservationAdmin(admin.ModelAdmin):
+    # list_display = ("User")
+    pass
+
 admin.site.register(Food, FoodAdmin)
 admin.site.register(Menu, MenuAdmin)
+admin.site.register(Reservation, ReservationAdmin)

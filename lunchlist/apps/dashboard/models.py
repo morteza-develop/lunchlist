@@ -72,9 +72,9 @@ class Menu(models.Model):
 
 # RESERVE Model \\\\\\\\\\\\\\\\\\\\\\\
 class Reservation(models.Model):
-    userName = models.ForeignKey(
+    userName = models.ManyToManyField(
         'auth.User', 
-        on_delete=models.CASCADE,
+        # on_delete=models.CASCADE,
         verbose_name=_("کاربر")
         )
     menu = models.ForeignKey(
@@ -85,5 +85,5 @@ class Reservation(models.Model):
     food = models.ForeignKey(
         Food,
         on_delete=models.CASCADE,
-        verbose_name=_("")
+        verbose_name=_("غذا")
     )
