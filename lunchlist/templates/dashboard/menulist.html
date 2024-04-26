@@ -11,7 +11,9 @@
 
     <div class="bottom-data">
         <div class="maincard">
-            d;lkf;sdlkf'a;sldkf'a;sldkf
+            {% for menu in all_menu %}
+                {{menu.name}}
+            {% endfor %}
         </div>
     </div>
 

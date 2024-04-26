@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+# from . import models
+from apps.dashboard.models import Menu
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -38,7 +40,14 @@ def dashboard_index(request):
 
 @login_required(login_url="login")
 def menulist_view(request):
-    return render(request, "dashboard/menulist.html")
+
+    all_menu = Menu.objects.all().order_by('-createDate').values()
+
+    context ={
+        "all_menu":all_menu
+    }
+
+    return render(request, "dashboard/menulist.html",context)
 
 
 @login_required(login_url="login")

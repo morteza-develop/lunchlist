@@ -56,8 +56,8 @@ class Menu(models.Model):
     )
 
     MENU_STATUS  = (
-        ("0", "بسته"),
-        ("1", "باز"),
+        ( 0, "بسته"),
+        ( 1, "باز"),
     )
 
     status = models.IntegerField(
