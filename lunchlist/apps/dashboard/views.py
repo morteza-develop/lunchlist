@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # from . import models
-from apps.dashboard.models import Menu
+from apps.dashboard.models import Menu , Food
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -52,4 +52,10 @@ def menulist_view(request):
 
 @login_required(login_url="login")
 def foodlist_view(request):
-    return render(request, "dashboard/foodlist.html")
+
+    all_food = Food.objects.all()
+
+    context = {
+        "all_food": all_food
+    }
+    return render(request, "dashboard/foodlist.html", context)

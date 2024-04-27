@@ -11,8 +11,54 @@
 
 
 <div class="bottom-data">
-    <div class="maincard">
-        FOOD LIST - PAGE
+    <div class="orders">
+        <div class="header">
+            <h3>لیست غذا ها</h3>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">نام</th>
+                    <th scope="col">نوع</th>
+                    <th scope="col">قیمت</th>
+                    <th scope="col">تصویر</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for food in all_food  %}
+                <tr>
+                    <td>
+                        {{food.foodName}}
+                    </td>
+                    <td>
+                        {% if food.foodType == 1 %}
+                        صبحانه
+                        {% elif food.foodType == 2 %}
+                        نهار
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{food.price}}
+                    </td>                    
+                    <td>
+                        {{food.foodImage}}
+                    </td>
+
+                </tr>
+                {% empty %}
+                <tr>
+                    <td>
+                        <div class="no-content">
+                            چیزی برای نمایش نیست !
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        {% comment %} {% include 'panel/includes/pagination.html' with page=user_messages %} {% endcomment %}
     </div>
 </div>
 

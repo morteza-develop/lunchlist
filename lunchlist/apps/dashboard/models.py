@@ -23,8 +23,8 @@ class Food(models.Model):
         verbose_name=_("قیمت غذا"))
     
     FOOD_CHOICES  = (
-        ("1", "صبحانه"),
-        ("2", "نهار")
+        ( 1 , "صبحانه"),
+        ( 2 , "نهار")
     )
 
     foodType = models.IntegerField(
