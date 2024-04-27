@@ -427,7 +427,20 @@ body{
   width: 100%;
   color: var(--dark);
 }
-
+.content main .bottom-data button{
+  width: 80px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--success);
+  color: var(--light);
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 36px;
+  cursor: pointer;
+}
 .content main .bottom-data>div{
   border-radius: 20px;
   background: var(--light);
@@ -492,7 +505,7 @@ body{
 }
 
 .content main .bottom-data .orders table tbody tr{
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: all 0.3s ease;
 }
 
@@ -605,12 +618,32 @@ cursor: pointer;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 }
+.btn-order-danger{
+  background: var(--light-danger);
+  /* background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9); */
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  color: var(--light);
+  font-size: 15px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
 
 .btn-order:hover{
   background: var(--light-primary);
   text-decoration: none;
   color: var(--dark);
 }
+/* .btn-order-danger:hover{
+  background: var(--light-danger);
+  text-decoration: none;
+  color: var(--dark);
+} */
 
 .popup {
   position: relative;

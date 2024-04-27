@@ -37,11 +37,10 @@
                     </td>
                     <td>
                         {% if menu.status == 0 %}
-                        بسته
+                        <span class="btn-order-danger"> بسته</span>
                         {% elif   menu.status == 1 %}
-                        باز
+                        <span> <a class="btn-order" href="">باز</a></span>
                         {% endif %}
-                        <button type="">fhc</button>
                     </td>
                 </tr>
                 {% empty %}
