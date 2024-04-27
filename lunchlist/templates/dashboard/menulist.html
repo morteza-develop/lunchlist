@@ -1,5 +1,5 @@
 {% extends '../home.html' %}
-
+{% load jalali_tags %}
 
 {% block title %}
 لیست منو ها
@@ -9,12 +9,60 @@
 
 {% block pagecontent %}
 
-    <div class="bottom-data">
+<div class="bottom-data">
+    <div class="orders">
+        <div class="header">
+            <h3>لیست منوها</h3>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">نام</th>
+                    <th scope="col">تاریخ ایجاد</th>
+                    <th scope="col">انقضای منو</th>
+                    <th scope="col">وضعیت</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for menu in all_menu  %}
+                <tr>
+                    <td>
+                        {{menu.name}}
+                    </td>
+                    <td>
+                        {{menu.createDate | to_jalali:'%y/%m/%d'}}
+                    </td>
+                    <td>
+                        {{menu.expire | to_jalali:'%y/%m/%d'}}
+                    </td>
+                    <td>
+                        {{menu.status}}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td>
+                        <div class="no-content">
+                            چیزی برای نمایش نیست !
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        {% comment %} {% include 'panel/includes/pagination.html' with page=user_messages %} {% endcomment %}
+    </div>
+</div>
+
+
+    {% comment %} <div class="bottom-data">
         <div class="maincard">
             {% for menu in all_menu %}
                 {{menu.name}}
             {% endfor %}
         </div>
-    </div>
+    </div> {% endcomment %}
 
 {% endblock %}
