@@ -94,3 +94,4 @@ class Reservation(models.Model):
     class Meta:
         verbose_name = _("رزرو")
         verbose_name_plural = _("رزروهای انجام شده")
+
