@@ -474,6 +474,11 @@ body{
   flex-basis: 500px;
 }
 
+.content main .bottom-data .orders form {
+  
+}
+
+
 .content main .bottom-data .orders table{
   width: 100%;
   border-collapse: collapse;
