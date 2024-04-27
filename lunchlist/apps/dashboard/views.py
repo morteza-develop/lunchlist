@@ -59,3 +59,9 @@ def foodlist_view(request):
         "all_food": all_food
     }
     return render(request, "dashboard/foodlist.html", context)
+
+
+@login_required(login_url="login")
+def reserve_form_view(request):
+
+    return render(request, "dashboard/reserve-form.html")
