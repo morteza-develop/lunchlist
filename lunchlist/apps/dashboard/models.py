@@ -66,6 +66,9 @@ class Menu(models.Model):
         default=0
     )
 
+    def __str__(self): 
+        return self.name + ' - '+ str(self.createDate)
+
     class Meta:
         verbose_name = _("منو")
         verbose_name_plural = _("منو ها")
