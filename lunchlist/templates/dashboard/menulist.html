@@ -36,7 +36,11 @@
                         {{menu.expire | to_jalali:'%y/%m/%d'}}
                     </td>
                     <td>
-                        {{menu.status}}
+                        {% if menu.status == 0 %}
+                        بسته
+                        {% elif   menu.status == 1 %}
+                        باز
+                        {% endif %}
                     </td>
                 </tr>
                 {% empty %}

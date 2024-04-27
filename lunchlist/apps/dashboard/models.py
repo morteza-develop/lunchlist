@@ -90,3 +90,7 @@ class Reservation(models.Model):
         on_delete=models.CASCADE,
         verbose_name=_("غذا")
     )
+
+    class Meta:
+        verbose_name = _("رزرو")
+        verbose_name_plural = _("رزروهای انجام شده")
