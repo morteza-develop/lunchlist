@@ -13,6 +13,9 @@
     <div class="orders">
         <div class="header">
             <h3>لیست منوها</h3>
+            {% if request.user.is_superuser %}
+                <span> <a class="btn-order" href="">ایجاد منوی جدید</a></span>
+            {% endif %}
         </div>
         <table>
             <thead>
