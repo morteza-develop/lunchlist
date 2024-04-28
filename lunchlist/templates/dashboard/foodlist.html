@@ -15,8 +15,8 @@
         <div class="header">
             <h3>لیست غذا ها</h3>
             {% if request.user.is_superuser %}
-            <span> <a class="btn-order" href="{% url 'createFood' %}">افزودن غذای جدید</a></span>
-        {% endif %}
+                <span> <a class="btn-order" href="{% url 'createFood' %}">افزودن غذای جدید</a></span>
+            {% endif %}
         </div>
         <table>
             <thead>
