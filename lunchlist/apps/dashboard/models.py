@@ -6,7 +6,10 @@ from datetime import datetime
 
 class UserInfo(models.Model):
     # user = models.m
-    profileimage = models.ImageField(verbose_name= _('تصویر'))
+    profileimage = models.ImageField(
+        upload_to="static/images/",
+        verbose_name= _('تصویر')
+        )
 
 # FOOD Model \\\\\\\\\\\\\\\\\\\\\
 class Food(models.Model):
@@ -34,6 +37,8 @@ class Food(models.Model):
         )
 
     foodImage = models.ImageField(
+        upload_to="static/images/", 
+        blank=True, 
         verbose_name=_("تصویر"),
         )
     
@@ -73,17 +78,35 @@ class Menu(models.Model):
         verbose_name = _("منو")
         verbose_name_plural = _("منو ها")
 
+
+# MENU item Model \\\\\\\\\\\\\\\\\\\\\\\
+class MenuItem(models.Model):
+    menu = models.ForeignKey(
+        Menu,   
+        on_delete=models.CASCADE,
+        verbose_name=_("انتخاب منو")
+        )
+    food = models.ForeignKey(
+        Food,
+        on_delete=models.CASCADE,
+        verbose_name=_("انتخاب غذا")
+    )
+    class Meta:
+        verbose_name = _("آیتمهای منو")
+        verbose_name_plural = _("آیتمهای منو")
+
+
 # RESERVE Model \\\\\\\\\\\\\\\\\\\\\\\
 class Reservation(models.Model):
     userName = models.ManyToManyField(
         'auth.User', 
-        # on_delete=models.CASCADE,
         verbose_name=_("کاربر")
         )
-    menu = models.ForeignKey(
-        Menu, 
+    menuItem = models.ForeignKey(
+        MenuItem, 
         on_delete=models.CASCADE,
         verbose_name="منو",
+        default=1,
         )
     food = models.ForeignKey(
         Food,

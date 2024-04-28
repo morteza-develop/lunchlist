@@ -12,6 +12,11 @@ class ReservationAdmin(admin.ModelAdmin):
     # list_display = ("User")
     pass
 
+class MenuItemAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Food, FoodAdmin)
 admin.site.register(Menu, MenuAdmin)
 admin.site.register(Reservation, ReservationAdmin)
+admin.site.register(MenuItem, MenuItemAdmin)
