@@ -71,3 +71,9 @@ def reserve_form_view(request):
 def create_menu_view(request):
 
     return render(request, "dashboard/create-menu.html")
+
+
+@login_required(login_url="login")
+def create_food_view(request):
+
+    return render(request, "dashboard/create-food.html")
