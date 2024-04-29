@@ -41,6 +41,10 @@ class Food(models.Model):
         blank=True, 
         verbose_name=_("تصویر"),
         )
+
+    
+    def __str__(self):
+        return self.foodName 
     
     class Meta:
         verbose_name = _("غذا")
@@ -91,6 +95,10 @@ class MenuItem(models.Model):
         on_delete=models.CASCADE,
         verbose_name=_("انتخاب غذا")
     )
+
+    def __str__(self):
+        return self.menu
+    
 
     class Meta:
         verbose_name = _("آیتمهای منو")
