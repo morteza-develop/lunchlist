@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # from . import models
-from apps.dashboard.forms import FoodForm
+from apps.dashboard.forms import FoodForm, MenuForm
 from apps.dashboard.models import Menu , Food
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -70,8 +70,15 @@ def reserve_form_view(request):
 
 @login_required(login_url="login")
 def create_menu_view(request):
+    if request.method == 'POST':
+        form = MenuForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('menulist')
+    else:
+        form = MenuForm()
 
-    return render(request, "dashboard/create-menu.html")
+    return render(request, "dashboard/create-menu.html",{'form': form})
 
 
 @login_required(login_url="login")

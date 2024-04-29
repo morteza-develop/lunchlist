@@ -475,10 +475,42 @@ body{
 }
 
 .content main .bottom-data .orders form {
-  
+  max-width: 400px;
+  width: 100%;
+  margin-left: auto;
+}
+.content main .bottom-data .orders form .form-input{
+  display: flex;
+  align-items: center;
+  height: 36px;
 }
 
+.content main .bottom-data .orders form .form-input input{
+  flex-grow: 1;
+  padding: 0 16px;
+  height: 100%;
+  border: none;
+  background: var(--grey);
+  border-radius: 36px 0 0 36px;
+  outline: none;
+  width: 100%;
+  color: var(--dark);
+}
 
+.content main .bottom-data .orders form .form-input button{
+  width: 80px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  color: var(--light);
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 0 36px 36px 0;
+  cursor: pointer;
+}
 .content main .bottom-data .orders table{
   width: 100%;
   border-collapse: collapse;

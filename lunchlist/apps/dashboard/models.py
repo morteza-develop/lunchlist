@@ -91,6 +91,7 @@ class MenuItem(models.Model):
         on_delete=models.CASCADE,
         verbose_name=_("انتخاب غذا")
     )
+
     class Meta:
         verbose_name = _("آیتمهای منو")
         verbose_name_plural = _("آیتمهای منو")

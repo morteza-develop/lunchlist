@@ -15,6 +15,14 @@
         <div class="header">
             <h3>ساخت منوی جدید</h3>
         </div>
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+            
+                <button type="submit">ذخیره</button>
+            </form>
+        </div>
 
     </div>
 </div>
