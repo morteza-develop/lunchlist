@@ -16,15 +16,15 @@
             <h3>ساخت منوی جدید</h3>
         </div>
         <div>
-            <form method="post">
+            <form method="post" action="">
                 {% csrf_token %}
                 <div>
                     <label for="name" class="form-input">نام منو را وارد کنید</label>
-                    <input type="text" name="name" id="name" class="form-input">
+                    <input type="text" name="name" id="name" class="form-input" required>
                 </div>
                 <div>
                     <label for="expire" class="form-input">زمان انقضاء را مشخص کنید</label>
-                    <input type="datetime" name="expire" id="expire" class="form-input">
+                    <input type="datetime" name="expire" id="expire" class="form-input" required>
                 </div>
                 <div>
                     <label for="status" class="form-input">وضعیت منو</label>

@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # from . import models
+from datetime import datetime
 from apps.dashboard.forms import FoodForm, MenuForm
 from apps.dashboard.models import Menu , Food
 from django.contrib.auth.models import User
@@ -42,7 +43,7 @@ def dashboard_index(request):
 @login_required(login_url="login")
 def menulist_view(request):
 
-    all_menu = Menu.objects.all().order_by('-createDate').values()
+    all_menu = Menu.objects.all().order_by('-id').values()
 
     context ={
         "all_menu":all_menu
@@ -71,25 +72,37 @@ def reserve_form_view(request):
 @login_required(login_url="login")
 def create_menu_view(request):
     if request.method == 'POST':
-        form = MenuForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('menulist')
-    else:
-        form = MenuForm()
+        name = request.POST['name']
+        expire = request.POST['expire']
+        status = int(request.POST['status'])
+        createDate = datetime.now()
 
-    return render(request, "dashboard/create-menu.html",{'form': form})
+        new_menu = Menu(
+            name=name,
+            expire=expire,
+            status=status,
+            createDate=createDate
+        )
+
+        new_menu.save()
+
+        message = "منوی جدید با موفقیت ایجاد شد!"
+        return redirect("menulist")
+
+    else:
+        return render(request, "dashboard/create-menu.html")
+    # return render(request, "dashboard/create-menu.html")
 
 
 @login_required(login_url="login")
 def create_food_view(request):
-    if request.method == 'POST':
-        form = FoodForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('foodlist')
-    else:
-        form = FoodForm()
+    # if request.method == 'POST':
+    #     name = request.POST['name']
+    #     expire = request.POST['expire']
+    #     status = request.POST['status']
+    #     createDate = date.now()
+    # else:
+    #     return render(request, 'form.html')
     return render(request, "dashboard/create-food.html", {'form': form})
 
 # def food_create(request):
