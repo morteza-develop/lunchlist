@@ -41,8 +41,10 @@
                     <td>
                         {% if menu.status == 0 %}
                         <span class="btn-order-danger"> بسته</span>
+                        <span class="btn-order-warning-disable">ویرایش</span>
                         {% elif   menu.status == 1 %}
-                        <span> <a class="btn-order" href="">باز</a></span>
+                        <span> <a class="btn-order" href="">افزودن غذا</a></span>
+                        <span> <a class="btn-order-warning" href="">ویرایش</a></span>
                         {% endif %}
                     </td>
                 </tr>
