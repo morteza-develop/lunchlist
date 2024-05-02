@@ -94,6 +94,11 @@ def create_menu_view(request):
     # return render(request, "dashboard/create-menu.html")
 
 
+@login_required(login_url='login')
+def add_item_menu(request, pk): 
+    print(pk)
+    return render(request, "dashboard/add-item-menu.html")
+
 @login_required(login_url="login")
 def create_food_view(request):
     # if request.method == 'POST':

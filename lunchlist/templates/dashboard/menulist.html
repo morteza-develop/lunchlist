@@ -43,7 +43,7 @@
                         <span class="btn-order-danger"> بسته</span>
                         <span class="btn-order-warning-disable">ویرایش</span>
                         {% elif   menu.status == 1 %}
-                        <span> <a class="btn-order" href="">افزودن غذا</a></span>
+                        <span> <a class="btn-order" href="{% url 'add_item_menu' menu.id  %}">افزودن غذا</a></span>
                         <span> <a class="btn-order-warning" href="">ویرایش</a></span>
                         {% endif %}
                     </td>
