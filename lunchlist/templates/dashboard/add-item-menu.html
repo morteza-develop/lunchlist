@@ -1,0 +1,51 @@
+{% extends '../home.html' %}
+{% load jalali_tags %}
+
+{% block title %}
+افزودن غذا به منو
+{% endblock %}
+
+
+
+{% block pagecontent %}
+
+<div class="bottom-data">
+    <div class="orders">
+        <div class="header">
+            <h3>لیست غذاهای این منو</h3>
+        </div>
+
+        <div>
+            <form action="">
+                <fieldset>
+                    <legend>افزودن غذا به منو</legend>
+                    <label for="">
+
+                        انتخاب غذا
+                    </label class="form-input">
+                    {{menu.id}}
+                    <select name="" id="" class="form-input">
+                    {% for food in get_all_food%}
+                    <option value="">
+                        {{food.foodName}}
+                         برای 
+
+                        {% if food.foodType == 2 %}
+                        نهار
+                        {% elif food.foodType == 1 %}
+                        صبحانه 
+                        {% endif %}
+                        </option>
+                    {% endfor %}
+                    </select>
+                    <label for="">تاریخ سرو غذا</label>
+                    <input type="datetime" name="" id="">
+                    <button type="submit" class="form-input form-btn mx-1">افزودن</button>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

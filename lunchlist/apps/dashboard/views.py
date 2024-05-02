@@ -94,10 +94,27 @@ def create_menu_view(request):
     # return render(request, "dashboard/create-menu.html")
 
 
+
+
 @login_required(login_url='login')
 def add_item_menu(request, pk): 
     print(pk)
-    return render(request, "dashboard/add-item-menu.html")
+
+    get_menu = Menu.objects.filter(pk=pk)
+
+    get_all_food = Food.objects.all()
+
+    print(get_menu)
+
+    context ={
+        "get_menu":get_menu,
+        "get_all_food":get_all_food
+    }
+
+    return render(request, "dashboard/add-item-menu.html",context)
+
+
+
 
 @login_required(login_url="login")
 def create_food_view(request):
@@ -108,7 +125,7 @@ def create_food_view(request):
     #     createDate = date.now()
     # else:
     #     return render(request, 'form.html')
-    return render(request, "dashboard/create-food.html", {'form': form})
+    return render(request, "dashboard/create-food.html")
 
 # def food_create(request):
 #     if request.method == 'POST':
