@@ -97,7 +97,7 @@ class MenuItem(models.Model):
     )
 
     date_of_serving = models.DateField(
-        verbose_name=_("تاریخ سرور غذا")
+        verbose_name=_("تاریخ سرور غذا"),
     )
 
     def __str__(self):
