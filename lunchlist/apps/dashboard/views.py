@@ -6,7 +6,7 @@ from django.contrib import messages
 # from . import models
 from datetime import datetime
 from apps.dashboard.forms import FoodForm, MenuForm
-from apps.dashboard.models import Menu , Food
+from apps.dashboard.models import Menu , Food , MenuItem
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -98,9 +98,11 @@ def create_menu_view(request):
 
 @login_required(login_url='login')
 def add_item_menu(request, pk): 
-    print(pk)
 
     get_menu = Menu.objects.filter(pk=pk)
+
+    set_menu_id = pk
+
 
     get_all_food = Food.objects.all()
 
@@ -108,10 +110,29 @@ def add_item_menu(request, pk):
 
     context ={
         "get_menu":get_menu,
-        "get_all_food":get_all_food
+        "get_all_food":get_all_food,
+        "set_menu_id": set_menu_id,
     }
 
+    if request.method == 'POST':
+        menu_id = set_menu_id
+        food = request.POST['food']
+        date_of_serving = request.POST['date_of_serving']
+
+        print(menu_id)
+        print(food)
+        print(date_of_serving)
+
+        new_item_menu = MenuItem(
+            menu = menu_id ,   
+            food = food,
+            date_of_serving = date_of_serving
+        )
+
+        new_menu_item.save()
+
     return render(request, "dashboard/add-item-menu.html",context)
+
 
 
 

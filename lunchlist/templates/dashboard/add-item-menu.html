@@ -16,19 +16,19 @@
         </div>
 
         <div>
-            <form action="">
+            <form action="" method ="post">
+                {% csrf_token %}
                 <fieldset>
                     <legend>افزودن غذا به منو</legend>
                     <label for="">
 
                         انتخاب غذا
                     </label class="form-input">
-                    <select name="" id="" class="form-input">
+                    <select name="food" id="" class="form-input">
                     {% for food in get_all_food%}
-                    <option value="">
+                    <option value="{{food.id}}">
                         {{food.foodName}}
                          برای 
-
                         {% if food.foodType == 2 %}
                         نهار
                         {% elif food.foodType == 1 %}
@@ -38,7 +38,7 @@
                     {% endfor %}
                     </select>
                     <label for="">تاریخ سرو غذا</label>
-                    <input type="text" name="" id="servedate" class="form-input servedate">
+                    <input type="text" name="date_of_serving" id="servedate" class="form-input servedate">
                     <button type="submit" class="form-input form-btn mx-1">افزودن</button>
 
 
