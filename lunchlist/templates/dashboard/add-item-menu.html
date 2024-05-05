@@ -23,7 +23,6 @@
 
                         انتخاب غذا
                     </label class="form-input">
-                    {{menu.id}}
                     <select name="" id="" class="form-input">
                     {% for food in get_all_food%}
                     <option value="">
@@ -39,8 +38,10 @@
                     {% endfor %}
                     </select>
                     <label for="">تاریخ سرو غذا</label>
-                    <input type="datetime" name="" id="">
+                    <input type="text" name="" id="servedate" class="form-input servedate">
                     <button type="submit" class="form-input form-btn mx-1">افزودن</button>
+
+
                 </fieldset>
             </form>
         </div>
@@ -49,3 +50,5 @@
 </div>
 
 {% endblock %}
+
+

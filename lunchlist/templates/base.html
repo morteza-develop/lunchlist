@@ -17,7 +17,13 @@
     </style>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+
+
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
+    <link rel="stylesheet" href=" {% static 'css/persian-datepicker.min.css'%}"/>
+
 
     {% comment %} <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">  {% endcomment %}
 
@@ -38,5 +44,16 @@
     {% comment %} <link rel="stylesheet" href="{% static 'js/bootstrap.bundle.min.js' %}"> {% endcomment %}
 
     <script src="{% static 'js/main.js' %}"></script>
+
+    <script src="{% static 'js/jquery.js'%}"></script>
+    <script src="{% static 'js/persian-date.min.js'%}"></script>
+    <script src="{% static 'js/persian-datepicker.min.js'%}"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $(".servedate").pDatepicker();
+        });
+    </script>
 </body>
 </html>
