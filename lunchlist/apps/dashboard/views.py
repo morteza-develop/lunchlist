@@ -9,6 +9,8 @@ from apps.dashboard.forms import FoodForm, MenuForm
 from apps.dashboard.models import Menu , Food , MenuItem
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import moment
+import jdatetime
 
 
 
@@ -96,43 +98,115 @@ def create_menu_view(request):
 
 
 
+# @login_required(login_url='login')
+# def add_item_menu(request, pk):
+#     try:
+#         get_menu = Menu.objects.get(pk=pk)  # استفاده از get به جای filter
+#     except Menu.DoesNotExist:
+#         # در صورتی که منویی با این pk وجود ندارد، باید کاری انجام شود، مثلا نمایش پیغام خطا
+#         return HttpResponse('Menu does not exist', status=404)
+
+#     set_menu_id = pk
+#     get_all_food = Food.objects.all()
+
+#     print(get_menu)
+#     print("|||")
+
+#     context = {
+#         "get_menu": get_menu,
+#         "get_all_food": get_all_food,
+#         "set_menu_id": set_menu_id,
+#     }
+
+#     if request.method == 'POST':
+#         food_id = int(request.POST['food'])  # دریافت شناسه غذا از فرم
+#         date_of_serving = request.POST['date_of_serving']
+#         print(date_of_serving)
+#         gregorian_date = moment.date(date_of_serving, 'jYYYY-jMM-jDD').format('YYYY-MM-DD' )
+
+#         j_date = jdatetime.datetime.strptime(gregorian_date, '%Y-%m-%d').date()
+#         g_date = j_date.togregorian()
+
+#         # تبدیل تاریخ میلادی به تاپل (برای نمونه، برای استفاده‌های دیگر ممکن است نیاز باشد)
+#         date_to_list = tuple(map(int, g_date.strftime('%Y-%m-%d').split('-')))
+#         print(date_to_list)  # چاپ تاپل تاریخ میلادی
+
+#         # ایجاد یک شیء تاریخ جدید از تاپل
+#         new_g_date = jdatetime.date(*date_to_list)
+#         print(new_g_date) 
+
+
+
+
+
+
+#         # date_to_list = tuple(map(int, gregorian_date.split('-')))
+#         # print(date_to_list)
+#         # gregorian_date = jdatetime.date(date_to_list)
+#         # gregorian_date = gregorian_date.togregorian()
+#         # print(gregorian_date)
+
+#         try:
+#             selected_food = Food.objects.get(pk=food_id)  # یافتن نمونه Food با استفاده از شناسه
+#         except Food.DoesNotExist:
+#             return HttpResponse('Food item does not exist', status=404)  # در صورت نبود غذا، نمایش خطا
+
+#         print(selected_food)
+#         print(new_g_date)
+
+#         new_item_menu = MenuItem(
+#             menu = get_menu,   # اختصاص دادن نمونه Menu
+#             food = selected_food,  # اختصاص دادن نمونه Food
+#             date_of_serving = new_g_date
+#         )
+
+#         new_item_menu.save()
+
+#     return render(request, "dashboard/add-item-menu.html", context)
+
+
 @login_required(login_url='login')
-def add_item_menu(request, pk): 
-
-    get_menu = Menu.objects.filter(pk=pk)
-
-    set_menu_id = pk
-
-
-    get_all_food = Food.objects.all()
-
-    print(get_menu)
-
-    context ={
-        "get_menu":get_menu,
-        "get_all_food":get_all_food,
-        "set_menu_id": set_menu_id,
-    }
+def add_item_menu(request, pk):
+    try:
+        get_menu = Menu.objects.get(pk=pk)
+    except Menu.DoesNotExist:
+        return HttpResponse('Menu does not exist', status=404)
 
     if request.method == 'POST':
-        menu_id = set_menu_id
-        food = request.POST['food']
-        date_of_serving = request.POST['date_of_serving']
+        food_id = int(request.POST.get('food', '0'))  # اطمینان از دریافت مقدار با یک مقدار پیش‌فرض
+        date_of_serving = request.POST.get('date_of_serving', '').strip()
 
-        print(menu_id)
-        print(food)
-        print(date_of_serving)
+        if not date_of_serving:
+            return HttpResponse("Date of serving is required.", status=400)
+
+        try:
+            # تبدیل تاریخ شمسی به میلادی با فرمت صحیح
+            j_date = jdatetime.datetime.strptime(date_of_serving, '%Y-%m-%d').date()
+            g_date = j_date.togregorian()
+            gregorian_date_str = g_date.strftime('%Y-%m-%d')
+        except ValueError as e:
+            print("Date conversion error:", e)
+            return HttpResponse('Invalid date format', status=400)
+
+        try:
+            selected_food = Food.objects.get(pk=food_id)
+        except Food.DoesNotExist:
+            return HttpResponse('Food item does not exist', status=404)
 
         new_item_menu = MenuItem(
-            menu = menu_id ,   
-            food = food,
-            date_of_serving = date_of_serving
+            menu=get_menu,
+            food=selected_food,
+            date_of_serving=gregorian_date_str
         )
+        new_item_menu.save()
 
-        new_menu_item.save()
-
-    return render(request, "dashboard/add-item-menu.html",context)
-
+    get_all_food = Food.objects.all()
+    context = {
+        "get_menu": get_menu,
+        "get_all_food": get_all_food,
+        "set_menu_id": pk
+    }
+    return render(request, "dashboard/add-item-menu.html", context)
 
 
 

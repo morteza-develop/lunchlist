@@ -50,10 +50,38 @@
     <script src="{% static 'js/persian-datepicker.min.js'%}"></script>
 
 
-    <script type="text/javascript">
+
+    <!-- <script type="text/javascript">
         $(document).ready(function() {
           $(".servedate").pDatepicker();
         });
+    </script> -->
+
+    <script>
+        $('.servedate').persianDatepicker({
+            autoClose: true,
+            format: 'YYYY/MM/DD',
+            // gregorian:{
+            //     locale:'en'
+            // }
+
+        });
     </script>
+    <!-- <script>
+        $(document).ready(function() {
+        $(".servedate").pDatepicker({
+            onSelect: function( inst, date ) {
+            // تاریخ انتخاب شده توسط کاربر به صورت میلادی در متغیر 'date' ذخیره می شود
+            var miladiDate = date;
+
+            // فرمت‌بندی تاریخ میلادی به YYYY-MM-DD
+            var formattedMiladiDate = moment(miladiDate).format('YYYY-MM-DD');
+
+            // نمایش تاریخ میلادی فرمت شده
+            console.log(formattedMiladiDate); // 2023-05-12
+            }
+        });
+        });
+    </script> -->
 </body>
 </html>
