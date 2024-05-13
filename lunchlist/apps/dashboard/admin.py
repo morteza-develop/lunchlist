@@ -13,7 +13,8 @@ class ReservationAdmin(admin.ModelAdmin):
     pass
 
 class MenuItemAdmin(admin.ModelAdmin):
-    pass
+    list_display=("menu", "food", "date_of_serving")
+    
 
 
 admin.site.register(Food, FoodAdmin)

@@ -101,7 +101,7 @@ class MenuItem(models.Model):
     )
 
     def __str__(self):
-        return self.menu
+        return str(self.menu)
     
 
     class Meta:

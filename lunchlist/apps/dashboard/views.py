@@ -181,7 +181,7 @@ def add_item_menu(request, pk):
 
         try:
             # تبدیل تاریخ شمسی به میلادی با فرمت صحیح
-            j_date = jdatetime.datetime.strptime(date_of_serving, '%Y-%m-%d').date()
+            j_date = jdatetime.datetime.strptime(date_of_serving, '%Y/%m/%d').date()
             g_date = j_date.togregorian()
             gregorian_date_str = g_date.strftime('%Y-%m-%d')
         except ValueError as e:
