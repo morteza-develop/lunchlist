@@ -12,14 +12,14 @@
 <div class="bottom-data">
     <div class="orders">
         <div class="header">
-            <h3>لیست غذاهای این منو</h3>
+            <h3>افزودن غذا به این منو</h3>
         </div>
 
         <div>
             <form action="" method ="post">
                 {% csrf_token %}
                 <fieldset>
-                    <legend>افزودن غذا به منو</legend>
+                    <legend>فرم افزودن</legend>
                     <label for="">
 
                         انتخاب غذا
@@ -45,6 +45,52 @@
                 </fieldset>
             </form>
         </div>
+    </div>
+</div>
+
+<div class="bottom-data">
+    <div class="orders">
+        <div class="header">
+            <h3>لیست غذاهای این منو</h3>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">منو</th>
+                    <th scope="col">غذا</th>
+                    <th scope="col">تاریخ سرو</th>
+                    <th scope="col">عملیات</th>
+                </tr>
+            </thead>
+            {% comment %} <tbody>
+                {% for item in get_menu_items  %}
+                <tr>
+                    <td>
+                        {{item.menu}}
+                    </td>
+                    <td>
+                        {{item.food}}
+                    </td>
+                    <td>
+                        {{item.date_of_serving | to_jalali:'%y/%m/%d'}}
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td>
+                        <div class="no-content">
+                            چیزی برای نمایش نیست !
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %} {% endcomment %}
+
+            </tbody>
+        </table>
 
     </div>
 </div>

@@ -173,14 +173,14 @@ def add_item_menu(request, pk):
         return HttpResponse('Menu does not exist', status=404)
 
     if request.method == 'POST':
-        food_id = int(request.POST.get('food', '0'))  # اطمینان از دریافت مقدار با یک مقدار پیش‌فرض
+        food_id = int(request.POST.get('food', '0')) 
         date_of_serving = request.POST.get('date_of_serving', '').strip()
 
         if not date_of_serving:
             return HttpResponse("Date of serving is required.", status=400)
 
         try:
-            # تبدیل تاریخ شمسی به میلادی با فرمت صحیح
+
             j_date = jdatetime.datetime.strptime(date_of_serving, '%Y/%m/%d').date()
             g_date = j_date.togregorian()
             gregorian_date_str = g_date.strftime('%Y-%m-%d')
@@ -201,10 +201,13 @@ def add_item_menu(request, pk):
         new_item_menu.save()
 
     get_all_food = Food.objects.all()
+    get_menu_items = MenuItem.objects.get(menu_id= pk)
+    print(get_menu_items)
     context = {
         "get_menu": get_menu,
         "get_all_food": get_all_food,
-        "set_menu_id": pk
+        "set_menu_id": pk,
+        "get_menu_items":get_menu_items
     }
     return render(request, "dashboard/add-item-menu.html", context)
 
