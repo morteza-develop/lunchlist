@@ -12,6 +12,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import moment
 import jdatetime
 
+from datetime import date
+
 
 
 
@@ -150,22 +152,33 @@ def add_item_menu(request, pk):
 
 @login_required(login_url="login")
 def create_food_view(request):
-    # if request.method == 'POST':
-    #     name = request.POST['name']
-    #     expire = request.POST['expire']
-    #     status = request.POST['status']
-    #     createDate = date.now()
-    # else:
-    #     return render(request, 'form.html')
+    if request.method == 'POST':
+        food_name = request.POST['foodName']
+        description = request.POST['description']
+        price = request.POST['price']
+        food_type = request.POST['foodType']
+        food_image = request.FILES.get('foodImage')  # Access uploaded image
+
+        # Validate data (improvements based on feedback)
+        if not food_name:
+            messages.error(request, 'Please enter a name for the food.')
+            return render(request, 'add_food.html', {'food_types': Food.FOOD_CHOICES})  # Pass food types for form
+        try:
+            price = int(price)  # Attempt to convert price to integer
+        except ValueError:
+            messages.error(request, 'Please enter a valid price (numbers only).')
+            return render(request, 'add_food.html', {'food_types': Food.FOOD_CHOICES})
+
+        # Create and save Food object
+        new_food = Food.objects.create(
+            foodName=food_name,
+            description=description,
+            price=price,
+            foodType=food_type,
+            foodImage=food_image  # Save uploaded image
+        )
+
+        messages.success(request, 'Food added successfully!')
+        return redirect('createFood') 
     return render(request, "dashboard/create-food.html")
 
-# def food_create(request):
-#     if request.method == 'POST':
-#         form = FoodForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('food_list')
-#     else:
-#         form = FoodForm()
-
-#     return render(request, 'food_create.html', {'form': form})

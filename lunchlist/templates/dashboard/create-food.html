@@ -16,11 +16,43 @@
             <h3>افزودن غذای جدید</h3>
         </div>
         <div>
-            <form method="post" enctype="multipart/form-data">
+            <form action="" method ="post">
                 {% csrf_token %}
-                {{ form }}
-            
-                <button type="submit">ذخیره</button>
+                <fieldset>
+                    <legend>افزودن غذا</legend>
+
+                    <label for="">
+                        نام غذا
+                    </label class="form-input">
+                    <input type="text" name="foodName" class="form-input">
+
+                    <label for="">
+                        توضیحات
+                    </label class="form-input">
+                    <input type="text" name="description" class="form-input">
+
+                    <label for="">
+                        قیمت
+                    </label class="form-input">
+                    <input type="text" name="price" class="form-input">
+
+                    <label for="">
+                        نوع غذا
+                    </label class="form-input">
+                    <select name="foodType" id="" class="form-input">
+                        <option value="1">صبحانه</option>
+                        <option value="2">نهار</option>
+                    </select>
+
+                    <label for="">
+                        تصویر
+                    </label class="form-input">
+                    <input type="file" name="foodImage" class="form-input">
+
+                    <button type="submit" class="form-input form-btn mx-1">افزودن</button>
+
+
+                </fieldset>
             </form>
         </div>
 
