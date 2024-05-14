@@ -76,7 +76,7 @@ class Menu(models.Model):
     )
 
     def __str__(self): 
-        return self.name + ' - '+ str(self.createDate)
+        return self.name
 
     class Meta:
         verbose_name = _("منو")
