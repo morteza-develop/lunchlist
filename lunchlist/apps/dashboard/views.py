@@ -148,7 +148,7 @@ def add_item_menu(request, pk):
     return render(request, "dashboard/add-item-menu.html", context)
 
 
-
+# FOOD views ------------------------------
 
 @login_required(login_url="login")
 def create_food_view(request):
@@ -169,16 +169,62 @@ def create_food_view(request):
             messages.error(request, 'Please enter a valid price (numbers only).')
             return render(request, 'create-food.html', {'food_types': Food.FOOD_CHOICES})
 
-        # Create and save Food object
+
         new_food = Food.objects.create(
             foodName=food_name,
             description=description,
             price=price,
             foodType=food_type,
-            foodImage=food_image  # Save uploaded image
+            foodImage=food_image  
         )
 
         messages.success(request, 'Food added successfully!')
         return redirect('createFood') 
     return render(request, "dashboard/create-food.html")
 
+def edit_food_view(request, food_id):
+    try:
+        food = Food.objects.get(pk=food_id) 
+    except Food.DoesNotExist:
+        messages.error(request, ' غذای مورد نظر یافت نشد!')
+        return redirect('food_list') 
+
+    if request.method == 'POST':
+        food_name = request.POST['foodName']
+        description = request.POST['description']
+        price = request.POST['price']
+        food_type = request.POST['foodType']
+        food_image = request.FILES.get('foodImage') 
+
+
+        food.foodName = food_name
+        food.description = description
+        food.price = price
+        food.foodType = food_type
+        if food_image: 
+            food.foodImage = food_image
+        food.save()
+
+        messages.success(request, 'غذا با موفقیت ویرایش شد!')
+        return redirect('food_detail', food_id=food.id)
+
+    context = {'food': food}
+    return render(request, 'edit-food.html', context)
+
+def delete_food_view(request, food_id):
+    try:
+        food = Food.objects.get(pk=food_id)
+    except Food.DoesNotExist:
+        messages.error(request, ' غذای مورد نظر یافت نشد!')
+        return redirect('food_list')
+
+    if request.method == 'POST':
+        food.delete()
+        messages.success(request, 'غذا با موفقیت حذف شد!')
+        return redirect('food_list')
+
+    context = {'food': food}
+    return render(request, 'delete-food.html', context)
+
+
+# FOOD views END ------------------------------

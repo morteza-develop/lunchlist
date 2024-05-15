@@ -1,4 +1,5 @@
 {% extends '../home.html' %}
+{% load static %}
 
 
 {% block title %}
@@ -25,6 +26,7 @@
                     <th scope="col">نوع</th>
                     <th scope="col">قیمت</th>
                     <th scope="col">تصویر</th>
+                    <th scope="col">عملیات</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,9 +46,11 @@
                         {{food.price}}
                     </td>                    
                     <td>
-                        {{food.foodImage}}
+                        <img src="{{food.foodImage}}" alt="" srcset="">
                     </td>
-
+                    <td>
+                        عملیات
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>
