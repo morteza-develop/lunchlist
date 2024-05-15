@@ -9,7 +9,7 @@ from apps.dashboard.forms import FoodForm, MenuForm
 from apps.dashboard.models import Menu , Food , MenuItem
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-import moment
+# import moment
 import jdatetime
 
 from datetime import date
@@ -162,12 +162,12 @@ def create_food_view(request):
         # Validate data (improvements based on feedback)
         if not food_name:
             messages.error(request, 'Please enter a name for the food.')
-            return render(request, 'add_food.html', {'food_types': Food.FOOD_CHOICES})  # Pass food types for form
+            return render(request, 'create-food.html', {'food_types': Food.FOOD_CHOICES})  # Pass food types for form
         try:
             price = int(price)  # Attempt to convert price to integer
         except ValueError:
             messages.error(request, 'Please enter a valid price (numbers only).')
-            return render(request, 'add_food.html', {'food_types': Food.FOOD_CHOICES})
+            return render(request, 'create-food.html', {'food_types': Food.FOOD_CHOICES})
 
         # Create and save Food object
         new_food = Food.objects.create(
