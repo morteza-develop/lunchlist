@@ -50,7 +50,7 @@
                             <span> <a class="btn-order-warning" href="{% url 'updateMenu' menu.id  %}">ویرایش</a></span>
                             <span> <a class="btn-order-danger" href="{% url 'deactivateMenu' menu.id %}">بستن منو</a></span>
                             {% elif   request.user.is_authenticated %}
-                            <span> <a class="btn-order" href="{% url 'updateMenu' menu.id  %}">رزرو این منو</a></span>
+                            <span> <a class="btn-order" href="{% url 'reserveform' menu.id  %}">رزرو این منو</a></span>
                             {% endif %}
                         {% endif %}
                     </td>

@@ -122,6 +122,12 @@ class Reservation(models.Model):
         'auth.User', 
         verbose_name=_("کاربر")
         )
+    menu = models.ForeignKey(
+        Menu,
+        on_delete=models.CASCADE,
+        verbose_name="منو",
+        default=0,
+    )
     menuItem = models.ForeignKey(
         MenuItem, 
         on_delete=models.CASCADE,

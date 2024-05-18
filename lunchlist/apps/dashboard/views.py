@@ -10,7 +10,7 @@ from django.core.files.base import ContentFile
 from django.conf import settings
 from datetime import datetime
 from apps.dashboard.forms import FoodForm, MenuForm
-from apps.dashboard.models import Menu , Food , MenuItem
+from apps.dashboard.models import Menu , Food , MenuItem , Reservation
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # import moment
@@ -70,11 +70,6 @@ def foodlist_view(request):
     }
     return render(request, "dashboard/foodlist.html", context)
 
-
-@login_required(login_url="login")
-def reserve_form_view(request):
-
-    return render(request, "dashboard/reserve-form.html")
 
 # MENU ----------------------
 #create
@@ -309,3 +304,21 @@ def delete_food_view(request, pk):
 
     
 # FOOD views END ------------------------------
+
+# RESERVE views ---------------------------
+
+@login_required(login_url="login")
+def reserve_form_view(request,pk):
+
+    item_menu = MenuItem.objects.filter(menu_id = pk)
+
+    context = {
+        "item_menu":item_menu,
+    }
+
+    print(item_menu)
+
+    return render(request, "dashboard/reserve-form.html",context)
+
+
+# RESERVE END ---------------------------
