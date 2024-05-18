@@ -4,6 +4,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # from . import models
+import os
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
 from datetime import datetime
 from apps.dashboard.forms import FoodForm, MenuForm
 from apps.dashboard.models import Menu , Food , MenuItem
@@ -149,7 +153,7 @@ def add_item_menu(request, pk):
 
 
 # FOOD views ------------------------------
-
+# create
 @login_required(login_url="login")
 def create_food_view(request):
     if request.method == 'POST':
@@ -157,31 +161,38 @@ def create_food_view(request):
         description = request.POST['description']
         price = request.POST['price']
         food_type = request.POST['foodType']
-        food_image = request.FILES.get('foodImage')  # Access uploaded image
+        food_image = request.FILES.get('foodImage')
 
-        # Validate data (improvements based on feedback)
         if not food_name:
             messages.error(request, 'Please enter a name for the food.')
-            return render(request, 'create-food.html', {'food_types': Food.FOOD_CHOICES})  # Pass food types for form
+            return render(request, 'dashboard/create-food.html', {'food_types': Food.FOOD_CHOICES}) 
         try:
-            price = int(price)  # Attempt to convert price to integer
+            price = int(price) 
         except ValueError:
             messages.error(request, 'Please enter a valid price (numbers only).')
-            return render(request, 'create-food.html', {'food_types': Food.FOOD_CHOICES})
+            return render(request, 'dashboard/create-food.html', {'food_types': Food.FOOD_CHOICES})
 
+        if food_image:
+            filename = os.path.basename(food_image.name)
+            file_path = os.path.join('static/images', filename)
+            path = default_storage.save(file_path, ContentFile(food_image.read()))
+            food_image_name = filename
+        else:
+            food_image_name = None
 
         new_food = Food.objects.create(
             foodName=food_name,
             description=description,
             price=price,
             foodType=food_type,
-            foodImage=food_image  
+            foodImage=food_image_name
         )
-
         messages.success(request, 'Food added successfully!')
         return redirect('createFood') 
-    return render(request, "dashboard/create-food.html")
+    return render(request, "dashboard/create-food.html", {'food_types': Food.FOOD_CHOICES})
 
+
+# edit 
 def edit_food_view(request, food_id):
     try:
         food = Food.objects.get(pk=food_id) 

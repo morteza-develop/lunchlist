@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
+import os
 
 
 
@@ -41,6 +42,12 @@ class Food(models.Model):
         blank=True, 
         verbose_name=_("تصویر"),
         )
+
+    def save(self, *args, **kwargs):
+        if self.foodImage:
+            # Extract only the filename
+            self.foodImage.name = os.path.basename(self.foodImage.name)
+        super(Food, self).save(*args, **kwargs)
 
     
     def __str__(self):
