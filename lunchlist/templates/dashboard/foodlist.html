@@ -51,7 +51,7 @@
                     <td>
                         {% if request.user.is_superuser %}
                         <span> <a class="btn-order-warning" href="{% url 'updateFood' food.id  %}">ویرایش</a></span>
-                        <span> <a class="btn-order" href="{% url 'deleteFood' food.id  %}">حذف</a></span>
+                        <span> <a class="btn-order-danger" href="{% url 'deleteFood' food.id  %}">حذف</a></span>
                         {% elif   request.user.is_authenticated %}
                         <p>مجوز ویرایش و حذف ندارید</p>
                         {% endif %}

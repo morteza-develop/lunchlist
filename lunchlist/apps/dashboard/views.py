@@ -89,7 +89,6 @@ def create_menu_view(request):
             return HttpResponse("Date of expire is required.", status=400)
 
         try:
-
             j_date = jdatetime.datetime.strptime(expire, '%Y/%m/%d').date()
             g_date = j_date.togregorian()
             gregorian_date_str = g_date.strftime('%Y-%m-%d')
@@ -97,21 +96,22 @@ def create_menu_view(request):
             print("Date conversion error:", e)
             return HttpResponse('Invalid date format', status=400)
 
+
         new_menu = Menu(
             name=name,
             expire=gregorian_date_str,
             status=status,
             createDate=createDate
         )
-
         new_menu.save()
+
+        Menu.objects.exclude(id=new_menu.id).update(status=0)
 
         message = "منوی جدید با موفقیت ایجاد شد!"
         return redirect("menulist")
 
     else:
         return render(request, "dashboard/create-menu.html")
-    # return render(request, "dashboard/create-menu.html")
 
 
 

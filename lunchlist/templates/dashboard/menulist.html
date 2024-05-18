@@ -41,10 +41,13 @@
                     <td>
                         {% if menu.status == 0 %}
                         <span class="btn-order-danger"> بسته</span>
-                        <span class="btn-order-warning-disable">ویرایش</span>
                         {% elif   menu.status == 1 %}
-                        <span> <a class="btn-order" href="{% url 'add_item_menu' menu.id  %}">افزودن غذا</a></span>
-                        <span> <a class="btn-order-warning" href="">ویرایش</a></span>
+                            {% if request.user.is_superuser %}
+                            <span> <a class="btn-order" href="{% url 'add_item_menu' menu.id  %}">افزودن غذا</a></span>
+                            <span> <a class="btn-order-warning" href="">ویرایش</a></span>
+                            {% elif   request.user.is_authenticated %}
+                            <p>مجوز ویرایش و حذف ندارید</p>
+                            {% endif %}
                         {% endif %}
                     </td>
                 </tr>
