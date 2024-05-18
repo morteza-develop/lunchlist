@@ -159,6 +159,17 @@ def update_menu_view(request, pk):
         }
         return render(request, "dashboard/update-menu.html", context)
 
+
+# diactive
+@login_required(login_url="login")
+def deactivate_menu_view(request, pk):
+    menu = get_object_or_404(Menu, pk=pk)
+    menu.status = 0
+    menu.save()
+    messages.success(request, 'منو با موفقیت غیرفعال شد.')
+    return redirect('menulist')
+
+
 # MENU END --------------------
 
 @login_required(login_url='login')

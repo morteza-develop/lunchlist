@@ -11,6 +11,7 @@ urlpatterns = [
     path('reserveform/', views.reserve_form_view , name='reserveform'),
     path('createMenu/', views.create_menu_view , name='createMenu'),
     path('updateMenu/<int:pk>', views.update_menu_view , name='updateMenu'),
+    path('deactivateMenu/<int:pk>', views.deactivate_menu_view , name='deactivateMenu'),
     path('createFood/', views.create_food_view , name='createFood'),
     path('updateFood/<int:pk>', views.update_food_view , name='updateFood'),
     path('deleteFood/<int:pk>', views.delete_food_view , name='deleteFood'),
