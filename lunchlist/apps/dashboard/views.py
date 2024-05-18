@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -193,49 +193,43 @@ def create_food_view(request):
 
 
 # edit 
-def edit_food_view(request, food_id):
-    try:
-        food = Food.objects.get(pk=food_id) 
-    except Food.DoesNotExist:
-        messages.error(request, ' غذای مورد نظر یافت نشد!')
-        return redirect('food_list') 
-
+@login_required(login_url="login")
+def update_food_view(request, pk):
+    food = get_object_or_404(Food, id=pk)
+    
     if request.method == 'POST':
         food_name = request.POST['foodName']
         description = request.POST['description']
         price = request.POST['price']
         food_type = request.POST['foodType']
-        food_image = request.FILES.get('foodImage') 
-
-
+        food_image = request.FILES.get('foodImage')
+        
+        if not food_name:
+            messages.error(request, 'Please enter a name for the food.')
+            return render(request, 'dashboard/update-food.html', {'food': food})
+        try:
+            price = int(price)
+        except ValueError:
+            messages.error(request, 'Please enter a valid price (numbers only).')
+            return render(request, 'dashboard/update-food.html', {'food': food})
+        
+        if food_image:
+            filename = os.path.basename(food_image.name)
+            file_path = os.path.join('static/images', filename)
+            path = default_storage.save(file_path, ContentFile(food_image.read()))
+            food.foodImage = filename
+        
         food.foodName = food_name
         food.description = description
         food.price = price
         food.foodType = food_type
-        if food_image: 
-            food.foodImage = food_image
+        
         food.save()
-
-        messages.success(request, 'غذا با موفقیت ویرایش شد!')
-        return redirect('food_detail', food_id=food.id)
-
-    context = {'food': food}
-    return render(request, 'edit-food.html', context)
-
-def delete_food_view(request, food_id):
-    try:
-        food = Food.objects.get(pk=food_id)
-    except Food.DoesNotExist:
-        messages.error(request, ' غذای مورد نظر یافت نشد!')
-        return redirect('food_list')
-
-    if request.method == 'POST':
-        food.delete()
-        messages.success(request, 'غذا با موفقیت حذف شد!')
-        return redirect('food_list')
-
-    context = {'food': food}
-    return render(request, 'delete-food.html', context)
+        
+        messages.success(request, 'Food updated successfully!')
+        return redirect('foodlist')  # Redirect to a list view or detail view
+    
+    return render(request, 'dashboard/update-food.html', {'food': food})
 
 
 # FOOD views END ------------------------------

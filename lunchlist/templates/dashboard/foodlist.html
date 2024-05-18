@@ -49,7 +49,8 @@
                         <img src="{% static '/images/' %}{{ food.foodImage }}" alt="" srcset="">
                     </td>
                     <td>
-                        عملیات
+                        <span> <a class="btn-order-warning" href="{% url 'updateFood' food.id  %}">ویرایش</a></span>
+                        <span> <a class="btn-order" href="">حذف</a></span>
                     </td>
                 </tr>
                 {% empty %}

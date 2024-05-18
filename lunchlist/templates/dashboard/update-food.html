@@ -1,0 +1,64 @@
+{% extends '../home.html' %}
+
+
+{% block title %}
+ویرایش غذا
+{% endblock %}
+
+
+
+{% block pagecontent %}
+
+
+<div class="bottom-data">
+    <div class="orders">
+        <div class="header">
+            <h3>ویرایش غذا</h3>
+        </div>
+        <div>
+            <form action="" method ="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>افزودن غذا</legend>
+
+                    <label for="">
+                        نام غذا
+                    </label class="form-input">
+                    <input type="text" name="foodName" class="form-input" value="{{ food.foodName }}">
+
+                    <label for="">
+                        توضیحات
+                    </label class="form-input">
+                    <input type="text" name="description" class="form-input" value="{{ food.description }}">
+
+                    <label for="">
+                        قیمت
+                    </label class="form-input">
+                    <input type="text" name="price" class="form-input" value="{{ food.price }}">
+
+                    <label for="">
+                        نوع غذا
+                    </label class="form-input">
+                    <select name="foodType" id="" class="form-input">
+                    {% for value, label in food.FOOD_CHOICES %}
+                        <option value="{{ value }}" {% if food.foodType == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                    </select>
+
+                    <label for="">
+                        تصویر
+                    </label class="form-input">
+                    <input type="file" name="foodImage" class="form-input" value="">
+
+                    <button type="submit" class="form-input form-btn mx-1">افزودن</button>
+
+
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
