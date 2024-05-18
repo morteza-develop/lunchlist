@@ -46,7 +46,7 @@
                             <span> <a class="btn-order" href="{% url 'add_item_menu' menu.id  %}">افزودن غذا</a></span>
                             <span> <a class="btn-order-warning" href="">ویرایش</a></span>
                             {% elif   request.user.is_authenticated %}
-                            <p>مجوز ویرایش و حذف ندارید</p>
+                            <span> <a class="btn-order" href="">رزرو این منو</a></span>
                             {% endif %}
                         {% endif %}
                     </td>
