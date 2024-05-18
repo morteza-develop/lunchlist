@@ -85,9 +85,21 @@ def create_menu_view(request):
         status = int(request.POST['status'])
         createDate = datetime.now()
 
+        if not expire:
+            return HttpResponse("Date of expire is required.", status=400)
+
+        try:
+
+            j_date = jdatetime.datetime.strptime(expire, '%Y/%m/%d').date()
+            g_date = j_date.togregorian()
+            gregorian_date_str = g_date.strftime('%Y-%m-%d')
+        except ValueError as e:
+            print("Date conversion error:", e)
+            return HttpResponse('Invalid date format', status=400)
+
         new_menu = Menu(
             name=name,
-            expire=expire,
+            expire=gregorian_date_str,
             status=status,
             createDate=createDate
         )
