@@ -238,4 +238,6 @@ def delete_food_view(request, pk):
     food.delete()
     messages.success(request, 'Food deleted successfully!')
     return redirect('foodlist')
+
+    
 # FOOD views END ------------------------------
