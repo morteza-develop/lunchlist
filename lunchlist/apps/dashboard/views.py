@@ -227,9 +227,15 @@ def update_food_view(request, pk):
         food.save()
         
         messages.success(request, 'Food updated successfully!')
-        return redirect('foodlist')  # Redirect to a list view or detail view
+        return redirect('foodlist') 
     
     return render(request, 'dashboard/update-food.html', {'food': food})
 
-
+# delelte 
+@login_required(login_url="login")
+def delete_food_view(request, pk):
+    food = get_object_or_404(Food, id=pk)
+    food.delete()
+    messages.success(request, 'Food deleted successfully!')
+    return redirect('foodlist')
 # FOOD views END ------------------------------

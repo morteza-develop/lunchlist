@@ -50,7 +50,7 @@
                     </td>
                     <td>
                         <span> <a class="btn-order-warning" href="{% url 'updateFood' food.id  %}">ویرایش</a></span>
-                        <span> <a class="btn-order" href="">حذف</a></span>
+                        <span> <a class="btn-order" href="{% url 'deleteFood' food.id  %}">حذف</a></span>
                     </td>
                 </tr>
                 {% empty %}
