@@ -40,13 +40,13 @@
                     </td>
                     <td>
                         {% if menu.status == 0 %}
-                        <span class="btn-order-danger"> بسته</span>
+                        <span class="btn-order-danger-disable"> بسته</span>
                         {% elif   menu.status == 1 %}
                             {% if request.user.is_superuser %}
-                            <span> <a class="btn-order" href="{% url 'add_item_menu' menu.id  %}">افزودن غذا</a></span>
-                            <span> <a class="btn-order-warning" href="">ویرایش</a></span>
+                            <span> <a class="btn-order" href="{% url 'add_item_menu' menu.id  %}">افزودن و مشاهده</a></span>
+                            <span> <a class="btn-order-warning" href="{% url 'updateMenu' menu.id  %}">ویرایش</a></span>
                             {% elif   request.user.is_authenticated %}
-                            <span> <a class="btn-order" href="">رزرو این منو</a></span>
+                            <span> <a class="btn-order" href="{% url 'updateMenu' menu.id  %}">رزرو این منو</a></span>
                             {% endif %}
                         {% endif %}
                     </td>

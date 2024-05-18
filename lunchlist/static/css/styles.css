@@ -684,11 +684,21 @@ cursor: pointer;
   text-decoration: none;
 }
 .btn-order-danger{
-  background: var(--light-danger);
+  background: var(--danger);
   -webkit-border-radius: 10;
   -moz-border-radius: 10;
   border-radius: 10px;
   color: var(--light);
+  font-size: 12px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+.btn-order-danger-disable{
+  background: var(--light-danger);
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  color: var(--dark);
   font-size: 12px;
   padding: 5px 10px 5px 10px;
   text-decoration: none;

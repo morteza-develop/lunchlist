@@ -1,0 +1,45 @@
+{% extends '../home.html' %}
+
+
+{% block title %}
+ویرایش منو
+{% endblock %}
+
+
+
+{% block pagecontent %}
+
+
+<div class="bottom-data">
+    <div class="orders">
+        <div class="header">
+            <h3>ویرایش منو</h3>
+        </div>
+        <div>
+            <form method="post" action="">
+                {% csrf_token %}
+                <div>
+                    <label for="name" class="form-input">نام منو را وارد کنید</label>
+                    <input type="text" name="name" id="name" class="form-input" value="{{ menu.name }}" required>
+                </div>
+                <div>
+                    <label for="expire" class="form-input">زمان انقضاء را مشخص کنید</label>
+                    <input type="datetime" name="expire" id="servedate" class="form-input servedate"  required>
+                </div>
+                <div>
+                    <label for="status" class="form-input">وضعیت منو</label>
+                    <select id="status" name="status" class="form-input" required>
+                        <option value="0" {% if menu.status == 0 %}selected{% endif %}>منو غیر فعال است</option>
+                        <option value="1" {% if menu.status == 1 %}selected{% endif %}>منو فعال است</option>
+                    </select>
+                </div>
+            
+                <button type="submit" class="form-input form-btn">ذخیره</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

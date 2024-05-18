@@ -76,7 +76,8 @@ def reserve_form_view(request):
 
     return render(request, "dashboard/reserve-form.html")
 
-
+# MENU ----------------------
+#create
 @login_required(login_url="login")
 def create_menu_view(request):
     if request.method == 'POST':
@@ -114,7 +115,51 @@ def create_menu_view(request):
         return render(request, "dashboard/create-menu.html")
 
 
+# edit 
+@login_required(login_url="login")
+def update_menu_view(request, pk):
+    menu = get_object_or_404(Menu, pk=pk)
 
+    if request.method == 'POST':
+        name = request.POST['name']
+        expire = request.POST['expire']
+        status = int(request.POST['status'])
+
+        if not expire:
+            return HttpResponse("Date of expire is required.", status=400)
+
+        try:
+            j_date = jdatetime.datetime.strptime(expire, '%Y/%m/%d').date()
+            g_date = j_date.togregorian()
+            gregorian_date_str = g_date.strftime('%Y-%m-%d')
+        except ValueError as e:
+            print("Date conversion error:", e)
+            return HttpResponse('Invalid date format', status=400)
+
+        menu.name = name
+        menu.expire = gregorian_date_str
+        menu.status = status
+        menu.save()
+
+        # Update status of other menus
+        Menu.objects.exclude(id=menu.id).update(status=0)
+
+        message = "منوی مورد نظر با موفقیت به‌روزرسانی شد!"
+        return redirect("menulist")
+
+    else:
+        # Convert Gregorian date to Jalali for initial form value
+        g_date = datetime.strptime(str(menu.expire), '%Y-%m-%d')
+        j_date = jdatetime.date.fromgregorian(date=g_date)
+        j_date_str = j_date.strftime('%Y/%m/%d')
+
+        context = {
+            'menu': menu,
+            'j_date_str': j_date_str
+        }
+        return render(request, "dashboard/update-menu.html", context)
+
+# MENU END --------------------
 
 @login_required(login_url='login')
 def add_item_menu(request, pk):
