@@ -15,9 +15,16 @@
             <h3>فرم رزرو</h3>
         </div>
         <div>
+
+
+            {% for item in item_menu%}
             <form action="">
-                
+                {{item.food}}
+                <input type="text" name="" id="">
+                {{item.menu}}
+                {{item.date_of_serving}}
             </form>
+            {% endfor %}
         </div>
     </div>
 </div>
